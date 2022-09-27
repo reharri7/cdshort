@@ -11,6 +11,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: ':shortUrl',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
