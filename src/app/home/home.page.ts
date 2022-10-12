@@ -8,8 +8,19 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  public arrayOfWebsiteLinks: string[] = [];
+// TODO: make this an object with the title of the website we are going to
+  public arrayOfWebsiteLinks: string[] = [
+    'challenge',
+    'ig',
+    'site',
+    'li',
+    'fb',
+    'sds',
+    'slack',
+    'yt',
+    'gh',
+    'merch',
+  ];
   private readonly urlCode: string;
   private urlCollection: AngularFirestoreCollection<any>;
   constructor(private router: Router,
@@ -20,22 +31,11 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.arrayOfWebsiteLinks = [
-      'challenge',
-      'ig',
-      'site',
-      'li',
-      'fb',
-      'sds',
-      'slack',
-      'yt',
-      'gh',
-      'merch',
-    ];
     if(this.urlCode == null) {
       return;
     }
 
+    // TODO: Outsource this to a service
     const urlRef = this.urlCollection.ref;
     const urlsByUrlCodeQuery = urlRef.where('code', '==', this.urlCode);
     const result = await urlsByUrlCodeQuery.get();
