@@ -32,6 +32,9 @@ export class HomePage implements OnInit {
       'gh',
       'merch',
     ];
+    if(this.urlCode == null) {
+      return;
+    }
 
     const urlRef = this.urlCollection.ref;
     const urlsByUrlCodeQuery = urlRef.where('code', '==', this.urlCode);
