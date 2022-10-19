@@ -25,3 +25,13 @@
 #container a {
   text-decoration: none;
 }
+ion-item:hover {
+  cursor: pointer;
+}
+ion-item {
+  margin: 10px auto;
+  width: 80%;
+  text-align: center;
+  border-radius: 15px;
+
+}

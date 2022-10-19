@@ -1,65 +1,67 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {RedirectService} from '../redirect.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 // TODO: make this an object with the title of the website we are going to
-  public arrayOfWebsiteLinks: string[] = [
-    'challenge',
-    'ig',
-    'site',
-    'li',
-    'fb',
-    'sds',
-    'slack',
-    'yt',
-    'gh',
-    'merch',
+  public arrayOfWebsiteLinks: any[] = [
+    {
+      link:'sds',
+      title: 'Register on SunDevilSync',
+    },
+    {
+      link:'slack',
+      title: 'CodeDevils Slack Workspace',
+    },
+    {
+      link:'li',
+      title: 'Connect with us on LinkedIn',
+    },
+    {
+      link:'challenge',
+      title: 'CodeDevils Coding Challenge',
+    },
+    {
+      link:'fb',
+      title: 'Find us on Facebook',
+    },
+    {
+      link:'ig',
+      title: 'Follow us on YouTube Instagram',
+    },
+    {
+      link:'yt',
+      title: 'Watch us on YouTube',
+    },
+    {
+      link:'site',
+      title: 'CodeDevils Website',
+    },
+    {
+      link:'gh',
+      title: 'CodeDevils GitHub',
+    },
   ];
   private readonly urlCode: string;
-  private urlCollection: AngularFirestoreCollection<any>;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private db: AngularFirestore) {
-    this.urlCollection = db.collection('urls');
+              private db: AngularFirestore,
+              private redirectService: RedirectService) {
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
-  }
-
-  async ngOnInit() {
     if(this.urlCode == null) {
       return;
-    }
-
-    // TODO: Outsource this to a service
-    const urlRef = this.urlCollection.ref;
-    const urlsByUrlCodeQuery = urlRef.where('code', '==', this.urlCode);
-    const result = await urlsByUrlCodeQuery.get();
-
-    if(result != null) {
-      let url = result.docs[0].get('url');
-      if(url !== '') {
-        url = 'https://' + url;
-        window.open(url, '_self');
-      }
+    } else {
+      this.redirectService.redirectToUrl(this.urlCode);
     }
   }
-  public async handleIonItemClick(code: string): Promise<void> {
-    const urlRef = this.urlCollection.ref;
-    const urlsByUrlCodeQuery = urlRef.where('code', '==', code);
-    const result = await urlsByUrlCodeQuery.get();
-
-    if(result != null) {
-      let url = result.docs[0].get('url');
-      if(url !== '') {
-        url = 'https://' + url;
-        window.open(url, '_self');
-      }
-    }
+  public async handleIonItemClick(code: string) {
+    await this.redirectService.redirectToUrl(code);
   }
 
 }
