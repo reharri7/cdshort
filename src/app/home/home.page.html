@@ -9,7 +9,9 @@
 <ion-content [fullscreen]="true">
 
   <div id="container">
-    <ion-item *ngFor="let link of arrayOfWebsiteLinks" (click)="handleIonItemClick(link)">{{ link }}</ion-item>
+    <ion-item *ngFor="let item of arrayOfWebsiteLinks" (click)="handleIonItemClick(item.link)">
+      <h1 style="width: 100%; text-align: center">{{ item.title }}</h1>
+    </ion-item>
 
   </div>
 </ion-content>
