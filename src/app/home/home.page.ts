@@ -9,7 +9,8 @@ import {RedirectService} from '../redirect.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-// TODO: make this an object with the title of the website we are going to
+  // TODO: make this an object with the title of the website we are redirecting to
+  // TODO: Make an interface for this object
   public arrayOfWebsiteLinks: any[] = [
     {
       link:'sds',
@@ -57,7 +58,7 @@ export class HomePage {
     if(this.urlCode == null) {
       return;
     } else {
-      this.redirectService.redirectToUrl(this.urlCode);
+      this.redirectService.redirectToUrl(this.urlCode).then();
     }
   }
   public async handleIonItemClick(code: string) {
