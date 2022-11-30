@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {RedirectService} from '../redirect.service';
@@ -8,7 +8,7 @@ import {RedirectService} from '../redirect.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   // TODO: make this an object with the title of the website we are redirecting to
   // TODO: Make an interface for this object
   public arrayOfWebsiteLinks: any[] = [
@@ -55,9 +55,9 @@ export class HomePage {
               private db: AngularFirestore,
               private redirectService: RedirectService) {
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
-    if(this.urlCode == null) {
-      return;
-    } else {
+  }
+  ngOnInit() {
+    if(this.urlCode) {
       this.redirectService.redirectToUrl(this.urlCode).then();
     }
   }
