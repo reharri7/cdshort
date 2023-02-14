@@ -41,14 +41,11 @@ export class HomePage implements OnInit {
     if(this.urlCode) {
       this.redirectService.redirectToUrl(this.urlCode).then();
     }
-    // For Testing Loading
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 3000);
 
     this.isLoading = false;
   }
   public async handleIonItemClick(code: string) {
+    this.isLoading = true;
     await this.redirectService.redirectToUrl(code);
   }
 
