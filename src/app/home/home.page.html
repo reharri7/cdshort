@@ -7,9 +7,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <ion-item *ngFor="let item of arrayOfWebsiteLinks" (click)="handleIonItemClick(item.link)">
-      <h1 style="width: 100%; text-align: center">{{ item.title }}</h1>
-    </ion-item>
+  <div *ngIf="isLoading" id="loading">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+  <div id="container" *ngIf="!isLoading">
+      <ion-item *ngFor="let website of websites" (click)="handleIonItemClick(website.link)">
+        <h1 style="width: 100%; text-align: center">{{ website.title }}</h1>
+      </ion-item>
   </div>
 </ion-content>
