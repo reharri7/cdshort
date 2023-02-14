@@ -34,6 +34,7 @@ export class HomePage implements OnInit {
               private activatedRoute: ActivatedRoute,
               private db: AngularFirestore,
               private redirectService: RedirectService) {
+    this.isLoading = true;
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
   }
   ngOnInit() {
