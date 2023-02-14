@@ -33,5 +33,20 @@ ion-item {
   width: 80%;
   text-align: center;
   border-radius: 15px;
+  min-width: 342px;
 
+}
+
+#loading {
+  display: block;
+  position: absolute;
+  align-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#loading ion-spinner {
+  --color: #8C1E41; // Based on ASU Maroon
+  transform: scale(3);
 }

@@ -3,53 +3,33 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {RedirectService} from '../redirect.service';
 
+interface Website {
+  title: string;
+  link: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit {
-  // TODO: make this an object with the title of the website we are redirecting to
-  // TODO: Make an interface for this object
-  public arrayOfWebsiteLinks: any[] = [
-    {
-      link:'sds',
-      title: 'Register on SunDevilSync',
-    },
-    {
-      link:'slack',
-      title: 'CodeDevils Slack Workspace',
-    },
-    {
-      link:'li',
-      title: 'Connect with us on LinkedIn',
-    },
-    {
-      link:'challenge',
-      title: 'CodeDevils Coding Challenge',
-    },
-    {
-      link:'fb',
-      title: 'Find us on Facebook',
-    },
-    {
-      link:'ig',
-      title: 'Follow us on YouTube Instagram',
-    },
-    {
-      link:'yt',
-      title: 'Watch us on YouTube',
-    },
-    {
-      link:'site',
-      title: 'CodeDevils Website',
-    },
-    {
-      link:'gh',
-      title: 'CodeDevils GitHub',
-    },
+
+  public websites: Website[] = [
+    {title: 'Register on SunDevilSync', link:'sds'},
+    {title: 'CodeDevils Slack Workspace ', link:'slack'},
+    {title: 'Connect with us on LinkedIn', link:'li'},
+    {title: 'CodeDevils Coding Challenge', link:'challenge'},
+    {title: 'Find us on Facebook', link:'fb'},
+    {title: 'Follow us on Instagram', link:'ig'},
+    {title: 'Watch us on YouTube', link:'yt'},
+    {title: 'CodeDevils Website', link:'site'},
+    {title: 'CodeDevils GitHub', link:'gh'}
   ];
+  public isLoading = false;
   private readonly urlCode: string;
+
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private db: AngularFirestore,
@@ -57,9 +37,16 @@ export class HomePage implements OnInit {
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
   }
   ngOnInit() {
+    this.isLoading = true;
     if(this.urlCode) {
       this.redirectService.redirectToUrl(this.urlCode).then();
     }
+    // For Testing Loading
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 3000);
+
+    this.isLoading = false;
   }
   public async handleIonItemClick(code: string) {
     await this.redirectService.redirectToUrl(code);
