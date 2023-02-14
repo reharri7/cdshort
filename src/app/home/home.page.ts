@@ -15,7 +15,6 @@ interface Website {
 })
 
 export class HomePage implements OnInit {
-
   public websites: Website[] = [
     {title: 'Register on SunDevilSync', link:'sds'},
     {title: 'CodeDevils Slack Workspace ', link:'slack'},
@@ -34,19 +33,26 @@ export class HomePage implements OnInit {
               private activatedRoute: ActivatedRoute,
               private db: AngularFirestore,
               private redirectService: RedirectService) {
-    this.isLoading = true;
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
   }
+
   ngOnInit() {
     this.isLoading = true;
     if(this.urlCode) {
       this.redirectService.redirectToUrl(this.urlCode).then();
     }
-
     this.isLoading = false;
   }
-  public async handleIonItemClick(code: string) {
+
+  ionViewWillEnter() {
     this.isLoading = true;
+  }
+  ionViewDidEnter() {
+    this.isLoading = false;
+  }
+
+  public async handleIonItemClick(code: string) {
+    // this.isLoading = true;
     await this.redirectService.redirectToUrl(code);
   }
 
