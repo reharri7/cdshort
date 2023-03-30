@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {RedirectService} from '../redirect.service';
@@ -14,7 +14,7 @@ interface Website {
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage implements OnInit {
+export class HomePage {
   public websites: Website[] = [
     {title: 'Register on SunDevilSync', link:'sds'},
     {title: 'CodeDevils Slack Workspace ', link:'slack'},
@@ -36,15 +36,11 @@ export class HomePage implements OnInit {
     this.urlCode = this.activatedRoute.snapshot.paramMap.get('shortUrl');
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.isLoading = true;
     if(this.urlCode) {
       this.redirectService.redirectToUrl(this.urlCode).then();
     }
-  }
-
-  ionViewDidEnter() {
-    //setTimeout(() => {this.isLoading = false;}, 3000);
     this.isLoading = false;
   }
 

@@ -1,16 +1,9 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title mode="ios">
-      Welcome to CodeDevils
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <div *ngIf="isLoading" id="loading">
-    <ion-spinner name="bubbles"></ion-spinner>
-  </div>
-  <div id="container" *ngIf="!isLoading">
+<ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner>
+
+<ion-content [fullscreen]="true" *ngIf="!isLoading">
+  <div id="container">
       <ion-item *ngFor="let website of websites" (click)="handleIonItemClick(website.link)">
         <h1 style="width: 100%; text-align: center">{{ website.title }}</h1>
       </ion-item>
