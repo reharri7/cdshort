@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../services/Authentication/authentication.service';
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login-modal',
@@ -7,15 +9,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LoginModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthenticationService,
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {}
 
   cancel() {
-    console.log('Cancel');
+    return this.modalCtrl.dismiss();
   }
 
-  confirm() {
-    console.log('Confirm');
+  async signInWithGoogle() {
+    await this.authService.signInWithGoogle();
+    return this.modalCtrl.dismiss();
   }
 }

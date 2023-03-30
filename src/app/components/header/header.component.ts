@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {LoginModalComponent} from '../login-modal/login-modal.component';
+import {AuthenticationService} from '../../services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,10 @@ import {LoginModalComponent} from '../login-modal/login-modal.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(
+    private modalCtrl: ModalController,
+    public authService: AuthenticationService,
+    ) { }
 
   ngOnInit() {}
 
@@ -18,7 +22,5 @@ export class HeaderComponent implements OnInit {
       component: LoginModalComponent,
     });
     await modal.present();
-
-    const {data, role} = await modal.onDidDismiss();
   }
 }

@@ -5,6 +5,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {Observable, of} from 'rxjs';
 import firebase from 'firebase/compat/app';
+import {ToastService} from '../Toast/toast.service';
 import auth = firebase.auth;
 
 @Injectable({
@@ -21,6 +22,7 @@ export class AuthenticationService {
     private router: Router,
     private route: ActivatedRoute,
     private ngZone: NgZone,
+    private toastService: ToastService
   ) {
     this.isAuthenticated$ = afAuth.user.pipe(
       map(user => !!user)
@@ -54,9 +56,9 @@ export class AuthenticationService {
   public async signInWithGoogle() {
     return this.oAuthProvider(new auth.GoogleAuthProvider())
       .then(res => {
-        // this.presentToast.presentToast('Successfully Logged In!', 3000, 'success');
+        this.toastService.presentToast('Successfully Logged In!', 3000, 'success');
       }).catch(error => {
-        // this.presentToast.presentToast('We are having trouble logging you in. Please try again later', 5000, 'danger');
+        this.toastService.presentToast('We are having trouble logging you in. Please try again later', 5000, 'danger');
       });
   }
 
