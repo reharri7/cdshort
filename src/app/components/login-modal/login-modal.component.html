@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title mode="ios">Login/Register</ion-title>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="block" color="primary" (click)="signInWithGoogle()">
+    <ion-icon slot="start" name="logo-google"></ion-icon>
+    LogIn with Google
+  </ion-button>
+</ion-content>

@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Welcome to CodeDevils
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="(authService.isAuthenticated$ | async); else logoutButton" (click)="authService.logout($event)" expand="block">Logout</ion-button>
+      <ng-template #logoutButton>
+        <ion-button (click)="openLoginModal()" expand="block">Login/Signup</ion-button>
+      </ng-template>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
