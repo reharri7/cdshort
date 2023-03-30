@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {RedirectService} from '../redirect.service';
+import {RedirectService} from '../../redirect.service';
 
 interface Website {
   title: string;
