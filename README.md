@@ -17,7 +17,7 @@
 
 ## Overview
 
-Our official CodeDevils URL shortener, LinkTree clone, and CodeDevil resumé board all in one! This will be a place to get quick information about The CodeDevils Organization and its members that are job seeking. It will also allow CodeDevils members to create their own short links!
+Our official CodeDevils URL shortener, LinkTree clone, and QR Code Generator! This will be a place to get quick information about The CodeDevils Organization. It will also allow CodeDevils members to create their own short links!
 
 ## Prerequisites
 
