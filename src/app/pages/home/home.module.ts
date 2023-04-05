@@ -5,8 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
 
 import {HomePageRoutingModule} from './home-routing.module';
-import {HeaderComponent} from "../components/header/header.component";
-import {LoginModalComponent} from "../components/login-modal/login-modal.component";
+import {HeaderComponent} from "../../components/header/header.component";
+import {LoginModalComponent} from "../../components/login-modal/login-modal.component";
 
 
 @NgModule({
