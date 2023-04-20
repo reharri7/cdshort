@@ -5,3 +5,17 @@ ion-content {
   height: 100%;
   background-color: #ffffff;
 }
+
+ion-spinner {
+  display: block;
+  position: absolute;
+  align-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ion-spinner {
+  --color: #8c1e41; // Based on ASU Maroon
+  transform: scale(3);
+}
