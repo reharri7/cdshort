@@ -16,13 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
   {
+    path: 'loading',
+    loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
+  },
+  {
     path: ':shortUrl',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     pathMatch: 'full'
-  },
-  {
-    path: 'loading',
-    loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
   },
 ];
 
